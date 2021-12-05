@@ -14,10 +14,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SimpleSelectedItems:
     m_Keys:
-    - Assets/Scripts/Obstacles/Reward.cs
+    - Assets/PostApo.meta
+    - Assets/PostApo/Demo1.meta
+    - Assets/PostApo/Demo1/camera animation.meta
+    - Assets/PostApo/Grounds.meta
+    - Assets/PostApo/Nature.meta
+    - Assets/PostApo/Nature/Bush1_Textures.meta
+    - Assets/PostApo/Nature/Bush2_Textures.meta
+    - Assets/PostApo/Nature/Bush3_Textures.meta
+    - Assets/PostApo/Nature/Grass.meta
+    - Assets/PostApo/Nature/Textures.meta
+    - Assets/PostApo/Nature/Tree1_Textures.meta
+    - Assets/PostApo/Nature/Tree2_Textures.meta
+    - Assets/PostApo/Nature/Tree3_Textures.meta
+    - Assets/PostApo/Nature/Tree5_Textures.meta
+    - Assets/PostApo/Nature/Tree6_Textures.meta
+    - Assets/PostApo/Nature/Tree7_Textures.meta
+    - Assets/PostApo/Nature/Tree_roof1_Textures.meta
+    - Assets/PostApo/Nature/_prefabs.meta
+    - Assets/PostApo/Particles.meta
+    - Assets/PostApo/Particles/Materials.meta
+    - Assets/PostApo/Prefabs.meta
+    - Assets/PostApo/_origin.meta
+    - Assets/PostApo/_origin/Models1.meta
+    - Assets/PostApo/_origin/Models1/Materials.meta
+    - Assets/PostApo/_origin/Models2.meta
+    - Assets/PostApo/_origin/Models2/Materials.meta
+    - Assets/PostApo/_origin/Models3.meta
+    - Assets/PostApo/_origin/Models3/Materials.meta
+    - Assets/PostApo/_origin/Models4.meta
+    - Assets/PostApo/_origin/Models4/Materials.meta
+    - Assets/PostApo/_origin/Standard Assets.meta
+    - Assets/PostApo/_origin/Standard Assets/Character Controllers.meta
+    - Assets/PostApo/_origin/Standard Assets/Character Controllers/Sources.meta
+    - Assets/PostApo/_origin/Standard Assets/Character Controllers/Sources/PrototypeCharacter.meta
+    - Assets/PostApo/_origin/Standard Assets/Character Controllers/Sources/PrototypeCharacter/Materials.meta
+    - Assets/PostApo/_origin/Standard Assets/Character Controllers/Sources/PrototypeCharacter/Textures.meta
+    - Assets/PostApo/_origin/Standard Assets/Character Controllers/Sources/Scripts.meta
+    - Assets/PostApo/_origin/Standard Assets/Editor.meta
+    - Assets/PostApo/_origin/Standard Assets/Editor/Image Effects.meta
+    - Assets/PostApo/_origin/Standard Assets/Image Effects (Pro Only).meta
+    - Assets/PostApo/_origin/Standard Assets/Image Effects (Pro Only)/_Sources.meta
+    - Assets/PostApo/_origin/Standard Assets/Image Effects (Pro Only)/_Sources/Shaders.meta
+    - Assets/PostApo/_origin/Standard Assets/Image Effects (Pro Only)/_Sources/Shaders/Contrast
+      Stretch.meta
+    - Assets/PostApo/_origin/Standard Assets/Image Effects (Pro Only)/_Sources/Shaders/_Antialiasing.meta
+    - Assets/PostApo/_origin/Standard Assets/Image Effects (Pro Only)/_Sources/Shaders/_BloomAndFlares.meta
+    - Assets/PostApo/_origin/Standard Assets/Image Effects (Pro Only)/_Sources/Shaders/_DepthOfField.meta
+    - Assets/PostApo/_origin/Standard Assets/Image Effects (Pro Only)/_Sources/Textures.meta
+    - Assets/PostApo/_origin/Textures1.meta
+    - Assets/PostApo/_origin/Textures2.meta
+    - Assets/PostApo/_origin/Textures3.meta
+    - Assets/PostApo/_origin/Tools.meta
+    - Assets/PostApo/sky.meta
+    - Assets/PostApo/sky/sky1.meta
+    - Assets/Scripts/Managers/LineDrawManager.cs
+    - Assets/_TerrainAutoUpgrade.meta
     - 
-    m_Values: 0101
-  RevisionSummary: before visual Upgrade
+    m_Values: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  RevisionSummary: 
   ChangesSearchValue: 
   SelectedHistoryRevision: 
   HistoryPageNumber: 0

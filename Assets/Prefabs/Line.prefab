@@ -446,6 +446,7 @@ MonoBehaviour:
   colliderWith: 0.1
   motorSpeed: 1000
   motorMaxForce: 10000
+  _points: []
 --- !u!68 &8475981388061276862
 EdgeCollider2D:
   m_ObjectHideFlags: 0

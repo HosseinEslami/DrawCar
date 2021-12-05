@@ -11,11 +11,12 @@ public class Line : MonoBehaviour
     [HideInInspector] public WheelJoint2D fWheelJoint,bWheelJoint;
     [HideInInspector]public Vector3 checkpointPos;
 
-    [SerializeField] private LineRenderer lRenderer;
+    //[SerializeField] private
+        public LineRenderer lRenderer;
     [SerializeField] private EdgeCollider2D edgeCollider;
     [SerializeField] private float colliderWith, motorSpeed, motorMaxForce;
 
-    private readonly List<Vector2> _points = new List<Vector2>();
+    public  List<Vector2> _points = new List<Vector2>();
     private readonly List<CircleCollider2D> _circleColliders = new List<CircleCollider2D>();
     private JointMotor2D _fJointMotor,_bJointMotor;
     private bool _freezeCar;
@@ -55,7 +56,7 @@ public class Line : MonoBehaviour
 
     public void NewDrawing()
     {
-        Debug.Log("NewDrawing");
+        //Debug.Log("NewDrawing");
         _points.Clear();
         lRenderer.positionCount = 0;
         edgeCollider.points  = new Vector2[0];
@@ -67,23 +68,35 @@ public class Line : MonoBehaviour
         }
     }
 
-    public void SetPosition(Vector2 pos)
+    public void SetPosition(Vector2 pos, bool justRefresh)
     {
-        if (!CanAppend(pos)) return;
+        if (!justRefresh && !CanAppend(pos)) return;
 
-        _points.Add(pos);
+        if(!justRefresh)
+        {
+            _points.Add(pos);
 
-        var positionCount = lRenderer.positionCount;
-        positionCount++;
-        lRenderer.positionCount = positionCount;
-        lRenderer.SetPosition(positionCount - 1, pos);
+            var positionCount = lRenderer.positionCount;
+            positionCount++;
+            lRenderer.positionCount = positionCount;
+            lRenderer.SetPosition(positionCount - 1, pos);
+            
+            var circleCollider = GetFromCircleColliderPool();
+            circleCollider.enabled = true;
+            circleCollider.offset = pos;
+            circleCollider.radius = colliderWith;
+        }
+        else
+        {
+            for (var i = 0; i < _points.Count; i++)
+            {
+                _circleColliders[i].offset = _points[i];
+            }
+        }
 
         edgeCollider.points = _points.ToArray();
 
-        var circleCollider = GetFromCircleColliderPool();
-        circleCollider.enabled = true;
-        circleCollider.offset = pos;
-        circleCollider.radius = colliderWith;
+        
     }
 
     private CircleCollider2D GetFromCircleColliderPool()

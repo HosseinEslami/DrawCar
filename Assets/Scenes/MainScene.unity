@@ -235,6 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rewardAmount: 1
+  isFinalFlag: 0
 --- !u!1 &97387970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1503,6 +1504,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e551b487f25320741af79026f873edc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOver:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1158478221
 Transform:
   m_ObjectHideFlags: 0

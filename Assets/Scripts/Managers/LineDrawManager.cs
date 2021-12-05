@@ -14,9 +14,10 @@ namespace Managers
         private Line _currentLine;
         private Plane _plane;
         private int _drawLayer;
-        private Vector3 _currentCarPos;
-        private Vector2 _startDrawPos;
-        private bool _firstDraw;
+        private Vector3 _currentCarPos, res;
+        [SerializeField] private Vector2 _startDrawPos;
+        private bool _firstDraw = true;
+        private Line _otherLine;
 
         private void Start()
         {
@@ -44,27 +45,23 @@ namespace Managers
                     EndDraw();
                     return;
                 }
+
                 StartDraw();
             }
             else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved || Input.GetMouseButton(0))
                 Drawing();
             else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetMouseButtonUp(0))
                 EndDraw();
-        
         }
 
         private void StartDraw()
         {
-            if (_firstDraw)
-            {
-                //_currentLine.StopCar();
-                ChangeCurrentLine();
-            }
-            else _firstDraw = true;
+            if (!_firstDraw) ChangeCurrentLine();
             
             _currentLine.gameObject.SetActive(true);
             _startDrawPos = _cam.ScreenToWorldPoint(Input.mousePosition);
             _currentLine.NewDrawing();
+            _otherLine = GetOtherLine();
         }
 
         private void Drawing()
@@ -73,42 +70,69 @@ namespace Managers
             tmpPos.z = 10f;
             Transform t;
             (t = transform).position = _cam.ScreenToWorldPoint(tmpPos);
-            _currentLine.SetPosition(t.position);// - new Vector3(_startDrawPos.x, _startDrawPos.y, 0));
+            
+            if (!_firstDraw)
+            {
+                if (_currentLine._points.Count == 0)
+                    res = t.position - new Vector3(_otherLine._points[0].x, _otherLine._points[0].y, 0);
+                
+                _currentLine.SetPosition(t.position, false);
+            }
+            
+            _currentLine.SetPosition(t.position, false);
         }
 
         private void EndDraw()
-        {
-            _currentCarPos = _currentLine.carStartPos.transform.position;
-            if (_currentLine == line1 && line2.isActiveAndEnabled)
             {
-                _currentCarPos = line2.transform.position;
-                line2.gameObject.SetActive(false);
+                if (_firstDraw)
+                {
+                    _currentCarPos = _currentLine.carStartPos.transform.position;
+                    _firstDraw = false;
+                }
+                else
+                {
+                    _currentCarPos = _otherLine.transform.position;
+                    _otherLine.gameObject.SetActive(false);
+                }
+                
+
+                //sync Pos
+                for (var i = 0; i < _currentLine._points.Count; i++)
+                {
+                    var newPoint = _currentLine._points[i] - new Vector2(res.x, res.y);
+                    _currentLine._points[i] = newPoint;
+                    _currentLine.lRenderer.SetPosition(i, newPoint);
+                }
+                _currentLine.SetPosition(_currentLine._points[0], true);
+
+                _currentLine.WheelsSetup();
+                _currentLine.transform.position = _currentCarPos;
+                _currentLine.rigidbody.bodyType = RigidbodyType2D.Dynamic;
+
+                //_camFollowManager.target = _currentLine.gameObject;
             }
-            else if(_currentLine == line2 && line1.isActiveAndEnabled)
+
+            private void ChangeCurrentLine()
             {
-                _currentCarPos = line1.transform.position;
-                line1.gameObject.SetActive(false);
+                //Change Current Line
+                _currentLine = _currentLine == line1 ? line2 : line1;
+                _currentLine.rigidbody.bodyType = RigidbodyType2D.Kinematic;
+                var tOld = _currentLine.transform;
+                tOld.position = Vector3.zero;
+                tOld.rotation = Quaternion.identity;
+                _currentLine.fWheel.gameObject.SetActive(false);
+                _currentLine.bWheel.gameObject.SetActive(false);
             }
 
+            private Line GetOtherLine()
+            {
+                var otherLine = line1;
+                if (_currentLine == line1 && line2.isActiveAndEnabled)
+                {
+                    otherLine = line2;
+                }
 
-            _currentLine.WheelsSetup();
-            _currentLine.transform.position = _currentCarPos;// - new Vector3(_startDrawPos.x, _startDrawPos.y, 0);
-            _currentLine.rigidbody.bodyType = RigidbodyType2D.Dynamic;
-
-            //_camFollowManager.target = _currentLine.gameObject;
+                return otherLine;
+            }
         }
-
-        private void ChangeCurrentLine()
-        {
-            //Change Current Line
-            _currentLine = _currentLine == line1 ? line2 : line1;
-            _currentLine.rigidbody.bodyType = RigidbodyType2D.Kinematic;
-            var tOld = _currentLine.transform;
-            //tOld.parent = null;
-            tOld.position = Vector3.zero;
-            tOld.rotation = Quaternion.identity;
-            _currentLine.fWheel.gameObject.SetActive(false);
-            _currentLine.bWheel.gameObject.SetActive(false);
-        }
-    }
 }

@@ -54,15 +54,15 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Managers\CamFollowManager.cs" />
      <Compile Include="Assets\Scripts\Line.cs" />
-     <Compile Include="Assets\Scripts\Managers\TrailDrawManager.cs" />
-     <Compile Include="Assets\Scripts\Managers\LineDrawManager.cs" />
-     <Compile Include="Assets\Scripts\Obstacles\Obstacle.cs" />
      <Compile Include="Assets\Scripts\Obstacles\CheckPoint.cs" />
-     <Compile Include="Assets\Scripts\Obstacles\SpeedBoost.cs" />
+     <Compile Include="Assets\Scripts\Managers\TrailDrawManager.cs" />
      <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
      <Compile Include="Assets\Scripts\Managers\CurrencyManager.cs" />
-     <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
      <Compile Include="Assets\Scripts\Obstacles\Reward.cs" />
+     <Compile Include="Assets\Scripts\Obstacles\Obstacle.cs" />
+     <Compile Include="Assets\Scripts\Managers\UIManager.cs" />
+     <Compile Include="Assets\Scripts\Obstacles\SpeedBoost.cs" />
+     <Compile Include="Assets\Scripts\Managers\LineDrawManager.cs" />
  <Reference Include="UnityEngine">
  <HintPath>D:/Program Files/Unity/Editor/2020.3.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
@@ -277,7 +277,7 @@
  <HintPath>D:/Program Files/Unity/Editor/2020.3.17f1/Editor/Data/Managed/UnityEngine/UnityEditor.UnityConnectModule.dll</HintPath>
  </Reference>
  <Reference Include="Newtonsoft.Json">
- <HintPath>D:/Unity/DrawCar/DrawCar/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll</HintPath>
+ <HintPath>D:/Unity/DrawCar/DrawCar/DrawCar/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>D:/Program Files/Unity/Editor/2020.3.17f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -631,58 +631,58 @@
  <HintPath>D:/Program Files/Unity/Editor/2020.3.17f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
- <HintPath>D:/Unity/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ <HintPath>D:/Unity/DrawCar/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Notifications">
- <HintPath>D:/Unity/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.Notifications.dll</HintPath>
+ <HintPath>D:/Unity/DrawCar/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.Notifications.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>D:/Unity/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>D:/Unity/DrawCar/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VisualStudio.Editor">
- <HintPath>D:/Unity/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
+ <HintPath>D:/Unity/DrawCar/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Mobile.AndroidLogcat.Editor">
- <HintPath>D:/Unity/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.Mobile.AndroidLogcat.Editor.dll</HintPath>
+ <HintPath>D:/Unity/DrawCar/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.Mobile.AndroidLogcat.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Sysroot.Linux_x86_64">
- <HintPath>D:/Unity/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.Sysroot.Linux_x86_64.dll</HintPath>
+ <HintPath>D:/Unity/DrawCar/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.Sysroot.Linux_x86_64.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Toolchain.Win-x86_64-Linux-x86_64">
- <HintPath>D:/Unity/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.Toolchain.Win-x86_64-Linux-x86_64.dll</HintPath>
+ <HintPath>D:/Unity/DrawCar/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.Toolchain.Win-x86_64-Linux-x86_64.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>D:/Unity/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>D:/Unity/DrawCar/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>D:/Unity/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>D:/Unity/DrawCar/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>D:/Unity/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>D:/Unity/DrawCar/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Sprite.Editor">
- <HintPath>D:/Unity/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+ <HintPath>D:/Unity/DrawCar/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>D:/Unity/DrawCar/DrawCar/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>D:/Unity/DrawCar/DrawCar/DrawCar/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PlasticSCM.Editor">
- <HintPath>D:/Unity/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
+ <HintPath>D:/Unity/DrawCar/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
- <HintPath>D:/Unity/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ <HintPath>D:/Unity/DrawCar/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>D:/Unity/DrawCar/DrawCar/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/Unity/DrawCar/DrawCar/DrawCar/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Notifications.Android">
- <HintPath>D:/Unity/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.Notifications.Android.dll</HintPath>
+ <HintPath>D:/Unity/DrawCar/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.Notifications.Android.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Notifications.iOS">
- <HintPath>D:/Unity/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.Notifications.iOS.dll</HintPath>
+ <HintPath>D:/Unity/DrawCar/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.Notifications.iOS.dll</HintPath>
  </Reference>
  <Reference Include="Unity.SysrootPackage.Editor">
- <HintPath>D:/Unity/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.SysrootPackage.Editor.dll</HintPath>
+ <HintPath>D:/Unity/DrawCar/DrawCar/DrawCar/Library/ScriptAssemblies/Unity.SysrootPackage.Editor.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
