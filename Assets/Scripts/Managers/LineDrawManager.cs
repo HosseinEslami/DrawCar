@@ -14,8 +14,10 @@ namespace Managers
         private Line _currentLine;
         private Plane _plane;
         private int _drawLayer;
+
         private Vector3 _currentCarPos, res;
-        [SerializeField] private Vector2 _startDrawPos;
+
+        //[SerializeField] private Vector2 _startDrawPos;
         private bool _firstDraw = true;
         private Line _otherLine;
 
@@ -38,16 +40,11 @@ namespace Managers
             var ray = _cam.ScreenPointToRay(Input.mousePosition);
             if (!_plane.Raycast(ray, out var dis)) return;
 
-            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began || Input.GetMouseButtonDown(0))
-            {
-                if (!Physics.Raycast(ray, out _, 20))
-                {
-                    EndDraw();
-                    return;
-                }
+            if (!Physics.Raycast(ray, out var hit, Mathf.Infinity)) return;
+            
 
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began || Input.GetMouseButtonDown(0))
                 StartDraw();
-            }
             else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved || Input.GetMouseButton(0))
                 Drawing();
             else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended || Input.GetMouseButtonUp(0))
@@ -56,10 +53,15 @@ namespace Managers
 
         private void StartDraw()
         {
-            if (!_firstDraw) ChangeCurrentLine();
-            
+            if (!_firstDraw)
+            {
+                ChangeCurrentLine();
+                if (_otherLine.checkpointPos != Vector3.zero)
+                    _currentLine.checkpointPos = _otherLine.checkpointPos;
+            }
+
             _currentLine.gameObject.SetActive(true);
-            _startDrawPos = _cam.ScreenToWorldPoint(Input.mousePosition);
+            //_startDrawPos = _cam.ScreenToWorldPoint(Input.mousePosition);
             _currentLine.NewDrawing();
             _otherLine = GetOtherLine();
         }
@@ -70,69 +72,70 @@ namespace Managers
             tmpPos.z = 10f;
             Transform t;
             (t = transform).position = _cam.ScreenToWorldPoint(tmpPos);
-            
+
             if (!_firstDraw)
             {
                 if (_currentLine._points.Count == 0)
                     res = t.position - new Vector3(_otherLine._points[0].x, _otherLine._points[0].y, 0);
-                
+
                 _currentLine.SetPosition(t.position, false);
             }
-            
+
             _currentLine.SetPosition(t.position, false);
         }
 
         private void EndDraw()
+        {
+            if (_firstDraw)
             {
-                if (_firstDraw)
-                {
-                    _currentCarPos = _currentLine.carStartPos.transform.position;
-                    _firstDraw = false;
-                }
-                else
-                {
-                    _currentCarPos = _otherLine.transform.position;
-                    _otherLine.gameObject.SetActive(false);
-                }
-                
-
-                //sync Pos
-                for (var i = 0; i < _currentLine._points.Count; i++)
-                {
-                    var newPoint = _currentLine._points[i] - new Vector2(res.x, res.y);
-                    _currentLine._points[i] = newPoint;
-                    _currentLine.lRenderer.SetPosition(i, newPoint);
-                }
-                _currentLine.SetPosition(_currentLine._points[0], true);
-
-                _currentLine.WheelsSetup();
-                _currentLine.transform.position = _currentCarPos;
-                _currentLine.rigidbody.bodyType = RigidbodyType2D.Dynamic;
-
-                //_camFollowManager.target = _currentLine.gameObject;
+                _currentCarPos = _currentLine.carStartPos.transform.position;
+                _firstDraw = false;
+            }
+            else
+            {
+                _currentCarPos = _otherLine.transform.position;
+                _otherLine.gameObject.SetActive(false);
             }
 
-            private void ChangeCurrentLine()
+
+            //sync Pos
+            for (var i = 0; i < _currentLine._points.Count; i++)
             {
-                //Change Current Line
-                _currentLine = _currentLine == line1 ? line2 : line1;
-                _currentLine.rigidbody.bodyType = RigidbodyType2D.Kinematic;
-                var tOld = _currentLine.transform;
-                tOld.position = Vector3.zero;
-                tOld.rotation = Quaternion.identity;
-                _currentLine.fWheel.gameObject.SetActive(false);
-                _currentLine.bWheel.gameObject.SetActive(false);
+                var newPoint = _currentLine._points[i] - new Vector2(res.x, res.y);
+                _currentLine._points[i] = newPoint;
+                _currentLine.lRenderer.SetPosition(i, newPoint);
             }
 
-            private Line GetOtherLine()
-            {
-                var otherLine = line1;
-                if (_currentLine == line1 && line2.isActiveAndEnabled)
-                {
-                    otherLine = line2;
-                }
+            _currentLine.SetPosition(_currentLine._points[0], true);
 
-                return otherLine;
-            }
+            _currentLine.WheelsSetup();
+            _currentLine.transform.position = _currentCarPos;
+            _currentLine.rigidbody.bodyType = RigidbodyType2D.Dynamic;
+
+            //_camFollowManager.target = _currentLine.gameObject;
         }
+
+        private void ChangeCurrentLine()
+        {
+            //Change Current Line
+            _currentLine = _currentLine == line1 ? line2 : line1;
+            _currentLine.rigidbody.bodyType = RigidbodyType2D.Kinematic;
+            var tOld = _currentLine.transform;
+            tOld.position = Vector3.zero;
+            tOld.rotation = Quaternion.identity;
+            _currentLine.fWheel.gameObject.SetActive(false);
+            _currentLine.bWheel.gameObject.SetActive(false);
+        }
+
+        private Line GetOtherLine()
+        {
+            var otherLine = line1;
+            if (_currentLine == line1 && line2.isActiveAndEnabled)
+            {
+                otherLine = line2;
+            }
+
+            return otherLine;
+        }
+    }
 }

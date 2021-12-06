@@ -7,7 +7,7 @@ namespace Obstacles
         protected override void ObstacleAttitude()
         {
             Debug.Log("CheckPoint");
-            Car.GetComponent<Line>().checkpointPos = transform.position;
+            Car.GetComponent<Line>().checkpointPos = Car.transform.position;
         }
     }
 }

@@ -16,8 +16,8 @@ namespace Managers
             if (Instance == null)
             {
                 Instance = this;
-                DontDestroyOnLoad(gameObject);
-            } else Destroy(gameObject);
+                //DontDestroyOnLoad(gameObject);
+            }// else Destroy(gameObject);
         }
         
         public void LoadScene(string sceneName)

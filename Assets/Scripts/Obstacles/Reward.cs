@@ -1,5 +1,4 @@
 using Managers;
-using UnityEngine;
 
 namespace Obstacles
 {
@@ -9,9 +8,13 @@ namespace Obstacles
         public bool isFinalFlag;
         protected override void ObstacleAttitude()
         {
-            Debug.Log("reward");
+            //Debug.Log("reward");
             CurrencyManager.Earn(rewardAmount, "Coin");
-            if(isFinalFlag) GameManager.Instance.gameOver.Invoke();
+            if (isFinalFlag)
+            {
+                Car.gameObject.SetActive(false);
+                GameManager.Instance.gameOver.Invoke();
+            }
             else gameObject.SetActive(false);
         }
     }

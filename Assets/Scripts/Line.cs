@@ -9,7 +9,8 @@ public class Line : MonoBehaviour
 
     [HideInInspector] public new Rigidbody2D rigidbody;
     [HideInInspector] public WheelJoint2D fWheelJoint,bWheelJoint;
-    [HideInInspector]public Vector3 checkpointPos;
+    //[HideInInspector] 
+    public Vector3 checkpointPos;
 
     //[SerializeField] private
         public LineRenderer lRenderer;
@@ -46,11 +47,11 @@ public class Line : MonoBehaviour
         if (other.CompareTag("boundary"))
         {
             Debug.Log("Respawn");
-            checkpointPos = Vector3.zero;
-            rigidbody.velocity = Vector2.zero;
+            fWheel.gameObject.GetComponent<Rigidbody2D>().velocity = bWheel.gameObject.GetComponent<Rigidbody2D>().velocity =  rigidbody.velocity = Vector2.zero;
             GameManager.Respawn.Invoke();
-            transform.position = checkpointPos != Vector3.zero ? checkpointPos : carStartPos.position;
             transform.rotation = Quaternion.identity;
+            transform.position = checkpointPos != Vector3.zero ? checkpointPos : carStartPos.position;
+            //checkpointPos = Vector3.zero;
         }
     }
 
@@ -95,8 +96,6 @@ public class Line : MonoBehaviour
         }
 
         edgeCollider.points = _points.ToArray();
-
-        
     }
 
     private CircleCollider2D GetFromCircleColliderPool()

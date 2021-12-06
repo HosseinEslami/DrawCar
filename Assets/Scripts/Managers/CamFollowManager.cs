@@ -4,7 +4,8 @@ namespace Managers
 {
     public class CamFollowManager : MonoBehaviour
     {
-        [HideInInspector] public GameObject target;
+        //[HideInInspector]
+        public GameObject target;
         
         [SerializeField] private Vector3 offset;
 
